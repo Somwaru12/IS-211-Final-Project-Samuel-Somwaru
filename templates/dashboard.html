@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Your Books</h2>
+
+    {% for book in books %}
+        <div class="card book">
+            <b>{{ book[2] }}</b><br>
+            Author: {{ book[3] }}<br>
+            Pages: {{ book[4] }}<br>
+            Rating: {{ book[5] }}
+            
+            <br>
+            <a class="delete" href="/delete/{{ book[0] }}"> Delete</a>
+        </div>
+    {% endfor %}
+
+    <div class="card">
+        <h3>Add Book by ISBN</h3>
+
+        <form method="POST" action="/search">
+            <input name="isbn" placeholder="Enter ISBN" required>
+            <br>
+            <button type="submit">Search & Add</button>
+        </form>
+    </div>
+
+    <a class="logout" href="/logout">Logout</a>
+
+</div>
+
+</body>
+</html>
